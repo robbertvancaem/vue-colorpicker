@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <ol>
+        <li v-for="todo in todos">
+          {{ todo.text }}
+        </li>
+      </ol>
+      <input v-model="todo.text">
+      <button v-on:click="addTodo">Add todo</button>
+    </div>
+
+    <script type="text/javascript">
+    var app = new Vue({
+  el: '#app',
+  data: {
+    todo: {
+      text: 'Another todo'
+    },
+    todos: [
+      {
+        text: 'Learn Vue'
+      },
+      {
+        text: 'Learn Vue some more'
+      },
+      {
+        text: 'Learn Clojure'
+      }
+    ]
+  },
+  methods: {
+    addTodo: function() {
+      this.todos.push(this.todo);
+    }
+  }
+});
+</script>
+  </body>
+</html>

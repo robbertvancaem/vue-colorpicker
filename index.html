@@ -1,47 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Vue Test</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  </head>
 
-  <body>
-    <div id="app">
-      <ol>
-        <li v-for="todo in todos">
-          {{ todo.text }}
-        </li>
-      </ol>
-      <input v-model="todo.text">
-      <button v-on:click="addTodo">Add todo</button>
+<head>
+  <meta charset="utf-8">
+  <title>Vue Colorpicker</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <link rel="stylesheet" href="src/css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app" v-bind:style="{backgroundColor: color}">
+    <div class="colorpicker">
+      <h1 class="bold">pick a color</h1>
+      <div class="colorpicker__input--wrapper">
+        <input class="colorpicker__input--text" type="text" maxlength="7" placeholder="#ffd837" v-model="color">
+        <button class="colorpicker__button" @click="openColorPicker">
+          <i class="material-icons">
+            colorize
+          </i>
+        </button>
+        <input class="colorpicker__input--color" type="color" v-model="color" ref="inputColor" />
+      </div>
+      <p class="bold">or choose from these predefined colors</p>
+      <div class="colorpicker__presets">
+        <button class="colorpicker__preset" v-for="preset in presets" @click="changeBackgroundColor(preset)">
+          {{ preset }}
+        </button>
+      </div>
     </div>
+  </div>
+  <script src="src/js/index.js"></script>
+</body>
 
-    <script type="text/javascript">
-    var app = new Vue({
-  el: '#app',
-  data: {
-    todo: {
-      text: 'Another todo'
-    },
-    todos: [
-      {
-        text: 'Learn Vue'
-      },
-      {
-        text: 'Learn Vue some more'
-      },
-      {
-        text: 'Learn Clojure'
-      }
-    ]
-  },
-  methods: {
-    addTodo: function() {
-      this.todos.push(this.todo);
-    }
-  }
-});
-</script>
-  </body>
 </html>

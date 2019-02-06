@@ -3,33 +3,22 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue Colorpicker</title>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <link rel="stylesheet" href="src/css/main.css">
+  <link rel="stylesheet" href="src/css/colorpicker.css">
   <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-  <div id="app" v-bind:style="{backgroundColor: color}">
-    <div class="colorpicker">
-      <h1 class="bold">pick a color</h1>
-      <div class="colorpicker__input--wrapper">
-        <input class="colorpicker__input--text" type="text" maxlength="7" placeholder="#ffd837" v-model="color">
-        <button class="colorpicker__button" @click="openColorPicker">
-          <i class="material-icons">
-            colorize
-          </i>
-        </button>
-        <input class="colorpicker__input--color" type="color" v-model="color" ref="inputColor" />
-      </div>
-      <p class="bold">or choose from these predefined colors</p>
-      <div class="colorpicker__presets">
-        <button class="colorpicker__preset" v-for="preset in presets" @click="changeBackgroundColor(preset)">
-          {{ preset }}
-        </button>
-      </div>
-    </div>
+  <div id="app">
+    <color-picker
+      v-for="colorpicker in colorpickers"
+      v-bind:presets="colorpicker.presets"
+      v-bind:color="colorpicker.color"
+    ></color-picker>
   </div>
   <script src="src/js/index.js"></script>
 </body>
